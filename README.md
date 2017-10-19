@@ -5,6 +5,10 @@ Portoflio Management System is personal/agency portfolio management system or te
 Website : <a href="slakpa.com.np">slakpa.com.np</a>
 
 
+### *** Note ***
+Database is located in main path with name slakpa.sql
+
+
 # License (The MIT License)
 
 Copyright (c) 2017 Lakpa Sherpa
