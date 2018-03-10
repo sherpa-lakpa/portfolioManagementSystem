@@ -2,7 +2,7 @@
 
 Portoflio Management System is personal/agency portfolio management system or template build over PHP. It is build using Object Oriented paradigm so it's core function and classes can be used on another project too.
 
-Website : <a href="slakpa.com.np">slakpa.com.np</a>
+Website : <a href="http://slakpa.com.np">slakpa.com.np</a>
 
 
 ### *** Note ***
