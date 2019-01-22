@@ -5,7 +5,8 @@ $GLOBALS['config'] = array(
 		'host' => '127.0.0.1',
 		'username' => 'root',
 		'password' => '',
-		'db' => 'slakpa'
+		'db' => 'ooplr'
+		// 'db' => 'slakpa'
 	),
 	'remember' => array(
 		'cookie_name' => 'hash',
