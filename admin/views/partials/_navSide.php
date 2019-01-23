@@ -16,7 +16,10 @@
                     <li class="<?php echo basename($_SERVER["REQUEST_URI"], ".php") == "testimonial" ? "active" : ""; ?>">
                         <a href="testimonial.php"><i class="fa fa-fw fa-file"></i> Testimonial</a>
                     </li>
-	                <!--NewSideBarGoesHere-->
+                    <!--NewSideBarGoesHere-->
+                    <li class="<?php echo basename($_SERVER["REQUEST_URI"], ".php") == "blood" ? "active" : ""; ?>">
+                        <a href="blood.php"><i class="fa fa-fw fa-file"></i> Blood</a>
+                    </li>
                     <li class="<?php if (basename($_SERVER["REQUEST_URI"], ".php") == "education" || basename($_SERVER["REQUEST_URI"], ".php") == "work") {
                         echo "active";
                     } ?>">

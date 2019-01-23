@@ -1,0 +1,70 @@
+<?php
+require "core/init.php";
+
+if(in_array("--help", $argv)){
+	Framework::help();
+}elseif(in_array("--delete", $argv)){
+	$framework = Framework::getInstance($argv[1]);
+	if(!$framework->if_exists()){
+		Framework::print("Component doesnot exist!\n","red");
+		return 1;
+	}
+	$framework->remove()->add_sidebar(true); //true for delete flag
+	$sql = "DROP TABLE `{$framework->db_name}`";
+	if(DB::getInstance()->query($sql)->error()){
+		Framework::print("Error encountered while deleting component's table\n","red");	
+	}else{
+		Framework::print("Component deleted successfully.\n","green");		
+	}
+}else{
+	if(count($argv) == 2){
+		$name = $argv[1];
+
+		if(Framework::getInstance($name)->if_exists()){
+			Framework::print("Component already Created! Try New!!\n","blue");
+			return 1;
+		}
+
+		try{
+			Framework::getInstance($name)->register()->make_model()->make_controller()->make_view()->add_sidebar();
+			Framework::print("Component created!!! Creating something new?\n","green");
+		}catch(Exception $e){
+			Framework::print("Error encountered! Please try again.\n","red");
+		}
+	}elseif (count($argv) == 1) {
+		Framework::print("Please give Component name.\nEg: 'php shoot test'\n","red");
+	}elseif(count($argv) == 3){
+		$name = $argv[1];
+		$db_arg = $argv[2];
+		$args = explode(",", $db_arg);
+		$cols = [];
+
+		foreach ($args as $key => $value) {
+			$arg = explode(":", $value);
+			$cols[$arg[0]] = $arg[1];
+		}
+
+		$table_name = lcfirst($name);
+		$table_name .= 's';
+
+		$sql = "DROP TABLE IF EXISTS `{$table_name}`;
+				CREATE TABLE `{$table_name}` (
+ 				`id` INT NOT NULL AUTO_INCREMENT ,";
+		foreach ($cols as $key => $value) {
+			if($value=="string")$value="VARCHAR(255)";
+			$sql .=	"`{$key}` {$value} NOT NULL , ";
+		}
+		$sql .= "PRIMARY KEY (`id`))";
+
+		// echo $sql;
+		if(DB::getInstance()->query($sql)->error()){
+			Framework::print("Error encountered while creating component\n","red");	
+		}else{
+			Framework::print("Component created successfully.\n","green");		
+		}
+
+	}else{
+		Framework::print("Please provide valid arguments.\nTry: 'php shoot --help'\n","red");
+	}
+}
+?>
