@@ -1,10 +1,12 @@
 <?php
 class Framework{
 	private static $_instance = null;
+	private $_db;
 	public $model_name;
 	public $controller_name;
 	public $view_name;
 	public $db_name;
+	public $columns;
 	private static $colors = [
 		'red' => '0;31',
 		'green' => '0;32',
@@ -13,10 +15,25 @@ class Framework{
 	];
 
 	public function __construct($name){
+		$this->_db = DB::getInstance();
 		$this->model_name = ucfirst($name);
 		$this->controller_name = lcfirst($name).'Controller';
 		$this->view_name = lcfirst($name);
 		$this->db_name = $this->view_name.'s';
+	}
+
+	public function DB(){
+		return $this->_db;
+	}
+
+	public function schema($args){
+		$cols = [];
+		foreach ($args as $key => $value) {
+			$arg = explode(":", $value);
+			$cols[$arg[0]] = $arg[1];
+		}
+		$this->columns = array_keys($cols);
+		return $cols;
 	}
 
 	public static function getInstance($name){
@@ -54,31 +71,81 @@ class Framework{
 		return $this;
 	}
 
-	public function make_view(){
+	public function make_view($schema=false){
 		$view_content = file_get_contents('views/sample.ls', true);
 
-		//Sanitize file
+		if($schema){
+			//Columns makers
+			$col_needle = '<!--Columns-->
+                                        <th>Name</th>
+                                        <!--EndColumns-->';
+			$row_needle = '/*Rows*/
+                                        echo "<td>{${{sample}}->name}</td>";
+                                        /*EndRows*/';
+            $edit_needle = '<!--Edit-->
+                                              <div class="form-group">
+                                                <div class="form-group">
+                                                    <label for="name">Name</label>
+                                                    <input type="text" name="name" id="name" value="<?php echo ${{sample}}->name ?>">
+                                                </div>
+                                              </div>
+                                            <!--EndEdit-->';
+            $add_needle = '<!--Add-->
+                        <div class="form-group">
+                            <input type="text" name="name" id="name" value="<?php echo escape(Input::get("name")); ?>" placeholder="Name" autocomplete="off" class="form-control">
+                        </div>
+                        <!--EndAdd-->';
+
+            $col_content = '';
+            $row_content = '';
+            $edit_content = '';
+            $add_content = '';
+            foreach ($this->columns as $key => $value) {
+            	$col_content .= '<th>'.ucfirst($value).'</th>
+            							';
+            	$row_content .= 'echo "<td>{${{sample}}->'.$value.'}</td>";
+                                        ';
+                $edit_content .= '<div class="form-group">
+                                                <div class="form-group">
+                                                    <label for="name">'.ucfirst($value).'</label>
+                                                    <input type="text" name="'.$value.'" id="'.$value.'" value="<?php echo ${{sample}}->'.$value.' ?>">
+                                                </div>
+                                              </div>
+                                              ';
+                $add_content .= '<div class="form-group">
+                            <input type="text" name="'.$value.'" id="'.$value.'" value="<?php echo escape(Input::get("'.$value.'")); ?>" placeholder="'.ucfirst($value).'" autocomplete="off" class="form-control">
+                        </div>
+                        ';
+            }
+			$view = str_replace($col_needle,$col_content,$view_content);
+			$view = str_replace($row_needle,$row_content,$view);
+			$view = str_replace($edit_needle,$edit_content,$view);
+			$view = str_replace($add_needle,$add_content,$view);
+			$view_content = $view;
+		}
 		$view = str_replace('{{sample}}',$this->view_name,$view_content);
 		$view = str_replace('{{samples}}',$this->db_name,$view);
 		$view = str_replace('{{Sample}}',$this->model_name,$view);
-
 		file_put_contents("views/{$this->view_name}.php",$view);	
 		return $this;
 	}
 
 	public function add_sidebar($delete=false){
 		$sidebar_content = file_get_contents('views/partials/_navSide.php', true);
-		// $icon = ['archive','blog','book','bookmark','edit','envelope','envelope-open','eraser','file','file-alt','folder','folder-open','keyboard','paperclip','paragraph','pen','pen-alt','pen-square','pencil','pencil-alt','quote-left','quote-right','sticky-note','thumbtack'];
-		// shuffle($icon);
 		$str_replace = '
                     <!--'.$this->model_name.'-->
                     <li class="<?php echo basename($_SERVER["REQUEST_URI"], ".php") == "'.$this->view_name.'" ? "active" : ""; ?>">
                         <a href="'.$this->view_name.'.php"><i class="fa fa-fw fa-book"></i> '.$this->model_name.'</a>
                     </li>
 	                <!--'.$this->model_name.'-->
-	                <!--NewSideBarGoesHere-->';
+	                ';
 
-	    $str_needle = '<!--NewSideBarGoesHere-->';
+	    $str_needle = '';
+
+	    if(!$delete){
+	    	$str_replace .= '<!--NewSideBarGoesHere-->';
+	    	$str_needle = '<!--NewSideBarGoesHere-->';
+	    }
 
 	    $view = function() use($str_needle, $str_replace, $delete, $sidebar_content){
 	    	if($delete){

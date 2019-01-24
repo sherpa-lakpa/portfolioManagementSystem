@@ -48,8 +48,9 @@
                                 <thead>
                                     <tr>
                                         <th>Id</th>
+                                        <!--Columns-->
                                         <th>Name</th>
-                                        <th>Percentage</th>
+                                        <!--EndColumns-->
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -59,14 +60,9 @@
                                     foreach (${{samples}} as $key => ${{sample}}) {
                                         echo '<tr>';
                                         echo "<td>{${{sample}}->id}</td>";
+                                        /*Rows*/
                                         echo "<td>{${{sample}}->name}</td>";
-                                        echo '<td>
-                                            <div class="progress">
-                                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: '.${{sample}}->percentage.'%">
-                                                </div>'.${{sample}}->percentage.'%
-                                            </div>
-                                            </td>
-                                        ';
+                                        /*EndRows*/
                                         echo "<td><a href='?delete=".escape(${{sample}}->id)."' class='btn btn-default'>Delete</a>";
                                         echo '<button type="button" class="btn btn-default" id="e{{Sample}}Btn'.${{sample}}->id.'">Edit</button></td>';
                                 ?>
@@ -86,16 +82,14 @@
                                         </div>
                                         <div class="modal-body">
                                           <form method="post" action="#">
+                                            <!--Edit-->
                                               <div class="form-group">
                                                 <div class="form-group">
                                                     <label for="name">Name</label>
                                                     <input type="text" name="name" id="name" value="<?php echo ${{sample}}->name ?>">
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="percentage">Percentage(%)</label>
-                                                    <input type="text" name="percentage" id="percentage" value="<?php echo ${{sample}}->percentage ?>">
-                                                </div>
                                               </div>
+                                            <!--EndEdit-->
                                         </div>
                                         <div class="modal-footer">
                                           <input type="hidden" name="id" value="<?php echo ${{sample}}->id ?>">
@@ -128,12 +122,11 @@
                             <h2 style="margin-top: 0px;padding-top: 0px;">Add {{Sample}}</h2>
                         </div>
                         <form action="" method="POST">
+                        <!--Add-->
                         <div class="form-group">
-                            <input type="text" name="name" id="name" value="<?php echo escape(Input::get('name')); ?>" placeholder="Name" autocomplete="off" class="form-control">
+                            <input type="text" name="name" id="name" value="<?php echo escape(Input::get("name")); ?>" placeholder="Name" autocomplete="off" class="form-control">
                         </div>
-                        <div class="form-group">
-                            <input type="text" name="percentage" id="percentage" value="<?php echo escape(Input::get('percentage')); ?>" placeholder="Percentage" class="form-control">
-                        </div>
+                        <!--EndAdd-->
                         <div class="form-group">
                             <input type="submit" value="Add" name="add" class="btn btn-default" style="margin-bottom: 10px;padding-right: 30px;padding-left: 30px;">
                         </div>
