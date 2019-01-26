@@ -42,20 +42,7 @@ if(in_array("--help", $argv)){
 		$db_arg = $argv[2];
 		$args = explode(",", $db_arg);
 		
-		$cols = $component->schema($args);
-
-		$table_name = $component->db_name;
-
-		$sql = "DROP TABLE IF EXISTS `{$table_name}`;
-				CREATE TABLE `{$table_name}` (
- 				`id` INT NOT NULL AUTO_INCREMENT ,";
-		foreach ($cols as $key => $value) {
-			if($value=="string")$value="VARCHAR(255)";
-			$sql .=	"`{$key}` {$value} NOT NULL , ";
-		}
-		$sql .= "PRIMARY KEY (`id`))";
-
-		if($component->DB()->query($sql)->error()){
+		if($component->create_table($args)){
 			@print("Error encountered while creating component\n","red");	
 		}else{
 			// DB sucess and touch File system

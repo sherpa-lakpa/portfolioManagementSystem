@@ -17,13 +17,10 @@
                         <a href="testimonial.php"><i class="fa fa-fw fa-file"></i> Testimonial</a>
                     </li>
                     <!--NewSideBarGoesHere-->
-                    <li class="<?php echo basename($_SERVER["REQUEST_URI"], ".php") == "blood" ? "active" : ""; ?>">
-                        <a href="blood.php"><i class="fa fa-fw fa-file"></i> Blood</a>
-                    </li>
                     <li class="<?php if (basename($_SERVER["REQUEST_URI"], ".php") == "education" || basename($_SERVER["REQUEST_URI"], ".php") == "work") {
                         echo "active";
                     } ?>">
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Experience <i class="fa fa-fw fa-caret-down"></i></a>
+                        <a data-toggle="collapse" data-target="#demo"  aria-expanded="false" aria-controls="demo"><i class="fa fa-fw fa-arrows-v"></i> Experience <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
                                 <a href="education.php"><i class="fa fa-fw fa-edit"></i> Education</a>

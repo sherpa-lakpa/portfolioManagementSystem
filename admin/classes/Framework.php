@@ -23,6 +23,13 @@ class Framework{
 		$this->db_name = $this->view_name.'s';
 	}
 
+	public static function getInstance($name){
+		if(!isset(self::$_instance)){
+			self::$_instance = new Framework($name);
+		}
+		return self::$_instance;
+	}
+
 	public function DB(){
 		return $this->_db;
 	}
@@ -38,11 +45,21 @@ class Framework{
 		return $cols;
 	}
 
-	public static function getInstance($name){
-		if(!isset(self::$_instance)){
-			self::$_instance = new Framework($name);
+	public function create_table($args){
+		$cols = $this->schema($args);
+
+		$table_name = $this->db_name;
+
+		$sql = "DROP TABLE IF EXISTS `{$table_name}`;
+				CREATE TABLE `{$table_name}` (
+ 				`id` INT NOT NULL AUTO_INCREMENT ,";
+		foreach ($cols as $key => $value) {
+			if($value=="string")$value="VARCHAR(255)";
+			$sql .=	"`{$key}` {$value} NOT NULL , ";
 		}
-		return self::$_instance;
+		$sql .= "PRIMARY KEY (`id`))";
+
+		return $this->DB()->query($sql)->error();
 	}
 
 	public function if_exists(){

@@ -5,6 +5,12 @@ This is initializer for controllers and Views
 require_once 'includes/_session.php';
 $name = basename(basename($_SERVER['PHP_SELF']), ".php");
 
+if($name != 'message'){
+	include "controllers/messageController.php";
+	$message = new messageController;
+	$messages = $message->index();
+}
+
 include "controllers/{$name}Controller.php";
 $class = "{$name}Controller";
 
