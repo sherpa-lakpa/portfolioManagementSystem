@@ -6,6 +6,7 @@ class Framework{
 	public $controller_name;
 	public $view_name;
 	public $db_name;
+	public $schema;
 	public $columns;
 	private static $colors = [
 		'red' => '0;31',
@@ -32,6 +33,7 @@ class Framework{
 			$arg = explode(":", $value);
 			$cols[$arg[0]] = $arg[1];
 		}
+		$this->schema = $cols;
 		$this->columns = array_keys($cols);
 		return $cols;
 	}
@@ -60,9 +62,44 @@ class Framework{
 		return $this;
 	}
 
-	public function make_controller(){
+	public function make_controller($schema=false){
 		$controller_content = file_get_contents('controllers/sampleController.ls', true);
 
+		if($schema){
+			$controller_needle = "/*ControllerValidation*/
+				'name' => array(
+					'required' => true,
+					'min' => 2,
+					'max' => 255,
+					'unique' => '{{sample}}s'
+				),
+				/*EndControllerValidation*/";
+			$controller_passed_needle = "/*ControllerValPassed*/
+						'name' => Input::get('name'),
+						/*EndControllerValPassed*/";
+			$controller_replace = "";
+			$passed_content = "";
+			foreach ($this->schema as $key => $value) {
+				if ($value == 'string') {
+					$controller_replace .= "'{$key}' => array(
+						'required' => true,
+						'min' => 2,
+						'max' => 255,
+					),
+					";
+				}else{
+					$controller_replace .= "'{$key}' => array(
+						'required' => true,
+					),";
+				}
+				$passed_content .= "
+						'{$key}' => Input::get('{$key}'),";
+			}
+			$controller = str_replace($controller_needle,$controller_replace,$controller_content);
+			$controller = str_replace($controller_passed_needle,$passed_content,$controller);
+			$controller_content = $controller;
+		}
+		
 		//Sanitize file
 		$controller = str_replace('{{sample}}',$this->view_name,$controller_content);
 		$controller = str_replace('{{Sample}}',$this->model_name,$controller);

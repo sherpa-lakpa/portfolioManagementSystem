@@ -65,7 +65,7 @@ if(in_array("--help", $argv)){
 			}
 
 			try{
-				$component->register()->make_model()->make_controller()->make_view(true)->add_sidebar();
+				$component->register()->make_model()->make_controller(true)->make_view(true)->add_sidebar();
 				Framework::print("Component created! Create something new \033[1;37m😊\033[0m\n","green");
 			}catch(Exception $e){
 				Framework::print("Error encountered! Please try again.\n","red");
