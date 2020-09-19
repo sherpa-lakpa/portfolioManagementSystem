@@ -121,7 +121,7 @@
                         </div>
                         <form action="" method="POST">
                         <div class="form-group">
-                            <input type="text" name="bqoutery" id="qouter" value="<?php echo escape(Input::get('qouter')); ?>" placeholder="Name" autocomplete="off" class="form-control">
+                            <input type="text" name="qouter" id="qouter" value="<?php echo escape(Input::get('qouter')); ?>" placeholder="Name" autocomplete="off" class="form-control">
                         </div>
                         <div class="form-group">
                             <textarea class="form-control" rows="3" value="<?php echo escape(Input::get('quote')); ?>" placeholder="Quote" name="quote"></textarea>

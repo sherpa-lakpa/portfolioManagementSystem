@@ -1,25 +1,51 @@
-ErrorDocument 404 http://localhost/slakpa.com.np/
-ErrorDocument 500 http://localhost/slakpa.com.np/
-# or map them to one error document:
-# ErrorDocument 404 /pages/errors/error_redirect.php
-# ErrorDocument 500 /pages/errors/error_redirect.php
-
-RewriteEngine on
-RewriteBase /
-
-RewriteCond %{REQUEST_URI} ^/404/$
-RewriteRule ^(.*)$ /pages/errors/404.php [L]
-
-RewriteCond %{REQUEST_URI} ^/500/$
-RewriteRule ^(.*)$ /pages/errors/500.php [L]
-
-# or map them to one error document:
-#RewriteCond %{REQUEST_URI} ^/404/$ [OR]
+#ErrorDocument 404 http://localhost/slakpa.com.np/
+#ErrorDocument 500 http://localhost/slakpa.com.np/
+## or map them to one error document:
+## ErrorDocument 404 /pages/errors/error_redirect.php
+## ErrorDocument 500 /pages/errors/error_redirect.php
+#
+#RewriteEngine on
+#RewriteBase /
+#
+#RewriteCond %{REQUEST_URI} ^/404/$
+#RewriteRule ^(.*)$ /pages/errors/404.php [L]
+#
 #RewriteCond %{REQUEST_URI} ^/500/$
-#RewriteRule ^(.*)$ /pages/errors/error_redirect.php [L]
+#RewriteRule ^(.*)$ /pages/errors/500.php [L]
+#
+## or map them to one error document:
+##RewriteCond %{REQUEST_URI} ^/404/$ [OR]
+##RewriteCond %{REQUEST_URI} ^/500/$
+##RewriteRule ^(.*)$ /pages/errors/error_redirect.php [L]
+#
+##for extension
+#
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteCond %{REQUEST_FILENAME}\.php -f
+#RewriteRule ^(.*)$ $1.php
 
-#for extension
 
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}\.php -f
-RewriteRule ^(.*)$ $1.php
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews
+    </IfModule>
+
+    RewriteEngine On
+ 
+ #helpful in dev server and probably in deployment to cut unwanted "too many redirect" issue!
+ RewriteBase /cpi
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+    # Handle Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+</IfModule>
+

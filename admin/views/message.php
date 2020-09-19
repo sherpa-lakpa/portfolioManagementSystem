@@ -47,7 +47,7 @@
                             <table class="table table-bordered table-hover table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Id</th>
+                                        <th style="min-width: 84px;">Date</th>
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Subject</th>
@@ -60,7 +60,7 @@
                                 <?php
                                     foreach ($messages as $key => $message) {
                                         echo '<tr>';
-                                        echo "<td>{$message->id}</td>";
+                                        echo "<td>".date_format(date_create($message->created_at), 'd M, y H:i')."</td>";
                                         echo "<td>{$message->name}</td>";
                                         echo "<td>{$message->email}</td>";
                                         echo "<td>{$message->subject}</td>";

@@ -18,7 +18,7 @@
 
         <?php include 'partials/_navTop.php'; //Contains sidebar too ?>
 
-        <div id="page-wrapper">
+        <div id="page-wrapper" style="overflow-x: hidden;">
 
             <div class="container-fluid">
 
@@ -405,6 +405,10 @@
                                                     <label for="github">Github</label>
                                                     <input type="text" name="github" id="github" value="<?php echo $informations->github; ?>" class="form-control">
                                                 </div>
+                                                <div class="form-group">
+                                                    <label for="skype">Skype</label>
+                                                    <input type="text" name="skype" id="skype" value="<?php echo $informations->skype; ?>" class="form-control">
+                                                </div>
                                         </div>
                                         <div class="modal-footer">
                                           <input type="hidden" name="stoken" value="<?php echo Token::generate(); ?>">
@@ -451,6 +455,10 @@
                                     <a href="https://<?php echo $informations->github; ?>" class="list-group-item">
                                         <span class="badge"><?php echo $informations->github; ?></span>
                                         <i class="fa fa-fw fa-github"></i> github
+                                    </a>
+                                    <a href="https://<?php echo $informations->skype; ?>" class="list-group-item">
+                                        <span class="badge"><?php echo $informations->skype; ?></span>
+                                        <i class="fa fa-fw fa-skype"></i> skype
                                     </a>
                                 </div>
                             </div>

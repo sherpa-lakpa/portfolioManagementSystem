@@ -54,6 +54,10 @@
                                         <input type="text" name="techno" id="techno" class="form-control">
                                     </div>
                                     <div class="form-group">
+                                        <label for="link">Project Link</label>
+                                        <input type="text" name="link" id="link" class="form-control" value="#">
+                                    </div>
+                                    <div class="form-group">
                                         <label for="info">Info</label>
                                         <textarea name="info" id="info" class="form-control" rows="5"></textarea>
                                     </div>
@@ -262,6 +266,10 @@
                                             <div class="form-group">
                                                 <label for="techno">Techno</label>
                                                 <input type="text" name="techno" id="techno" class="form-control" value="<?php echo $portfolio->techno ?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="link">Project link</label>
+                                                <input type="text" name="link" id="link" class="form-control" value="<?php echo $portfolio->link ?>">
                                             </div>
                                             <div class="form-group">
                                                 <label for="info">Info</label>

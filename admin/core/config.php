@@ -4,9 +4,9 @@ $GLOBALS['config'] = array(
 	'mysql' => array(
 		'host' => '127.0.0.1',
 		'username' => 'root',
-		'password' => '',
-		'db' => 'ooplr'
-		// 'db' => 'slakpa'
+		'password' => 'root',
+		// 'db' => 'ooplr'
+		'db' => 'slakpa'
 	),
 	'remember' => array(
 		'cookie_name' => 'hash',

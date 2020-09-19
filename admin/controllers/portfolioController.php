@@ -107,7 +107,7 @@ class portfolioController{
 				try{
 					if (Input::get('image') !== '') {
 						$image = 'images/'.Input::get('image');
-						$update = $portfolio->update(array(
+						$update = $this->portfolio->update(array(
 							'name' => Input::get('name'),
 							'category' => Input::get('category'),
 							'info' => Input::get('info'),

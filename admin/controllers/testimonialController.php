@@ -18,7 +18,7 @@ class testimonialController{
 		if (Input::exists() && Input::get('add')) {
 			$validate = new Validate;
 			$validation = $validate->check($_POST, array(
-				'by' => array(
+				'qouter' => array(
 					'required' => true,
 					'min' => 2,
 					'max' => 20,
@@ -34,7 +34,7 @@ class testimonialController{
 
 				try {
 					$this->testimonial->create(array(
-						'by' => Input::get('by'),
+						'qouter' => Input::get('qouter'),
 						'quote' => Input::get('quote')
 					));
 

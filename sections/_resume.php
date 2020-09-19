@@ -30,7 +30,22 @@
 
       </div> <!-- End Education -->
 
+      <style type="text/css">
+         .tech{
+            list-style: circle;
+            display: flex;
+         }
+         .tech li{
+            margin-right: 20px;
+            font-weight: 600;
+         }
 
+         .work-list{
+            margin-top: -15px;
+            margin-left: 15px;
+            list-style: disc;
+         }
+      </style>
       <!-- Work
       ----------------------------------------------- -->
       <div class="row work">
@@ -74,7 +89,7 @@
 
          <div class="nine columns main-col">
 
-            <p>Here are my some fields of Expertise which I use to develop new websites/applications, customer relationship management (CRM) applications and develop fantastic content management systems (CMS). Most websites I build can be created with WordPress content management system.
+            <p>Here are my some fields of Expertise which I use to build excellent software that improves the lives of those around me.
             </p>
 
 				<div class="bars">

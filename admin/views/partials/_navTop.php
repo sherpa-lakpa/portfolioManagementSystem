@@ -23,7 +23,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu message-dropdown">
-                        <?php foreach ($messages as $key => $message) {
+                        <?php foreach ($message_list as $key => $message) {
                             echo '<li class="message-preview">
                                 <a href="#">
                                     <div class="media">
@@ -33,7 +33,7 @@
                                         <div class="media-body">
                                             <h5 class="media-heading"><strong>'.$message->subject.'</strong>
                                             </h5>
-                                            <p class="small text-muted"><i class="fa fa-clock-o"></i> '.date_format(date_create($message->created), "d M, y").' at '.date_format(date_create($message->created), "g:i A").'</p>
+                                            <p class="small text-muted"><i class="fa fa-clock-o"></i> '.date_format(date_create($message->created_at), "d M, y").' at '.date_format(date_create($message->created_at), "g:i A").'</p>
                                             <p>'.$message->message.'</p>
                                         </div>
                                     </div>

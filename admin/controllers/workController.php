@@ -38,7 +38,7 @@ class workController{
 				'info' => array(
 					'required' => true,
 					'min' => 5,
-					'max' => 500
+					'max' => 10000
 				)
 			));
 
@@ -93,7 +93,7 @@ class workController{
 				'info' => array(
 					'required' => true,
 					'min' => 5,
-					'max' => 500
+					'max' => 10000
 				)
 			));
 			if($validation->passed()){

@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Oct 04, 2017 at 12:52 PM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- Host: 127.0.0.1
+-- Generation Time: Feb 09, 2020 at 11:43 AM
+-- Server version: 5.7.29-0ubuntu0.18.04.1
+-- PHP Version: 7.0.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `ooplr`
+-- Database: `slakpa`
 --
 
 -- --------------------------------------------------------
@@ -39,9 +41,7 @@ CREATE TABLE `educations` (
 --
 
 INSERT INTO `educations` (`id`, `school`, `degree`, `date`, `info`) VALUES
-(1, 'University of Life', 'Master in Graphic Design', ' April 2007', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. Nullam dictum felis eu pede mollis pretium. '),
-(2, 'School of Cool Designers', 'B.A. Degree in Graphic Design', 'March 2003', 'This is Photoshop\'s version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris vitae erat '),
-(10, 'RIAs', 'school', '2007-2010', 'It is good school');
+(1, 'St Lawrence College', 'BSc. Computer Science and Intimation Technology', '2014-2018', 'My study is still running in Bachelor\'s Degree with Computer Science & Information Technology (CSIT). I am equipped with full fundamental course for computer science and IT background.');
 
 -- --------------------------------------------------------
 
@@ -84,15 +84,16 @@ CREATE TABLE `informations` (
   `gplus` varchar(100) NOT NULL,
   `linkedin` varchar(100) NOT NULL,
   `instagram` varchar(100) NOT NULL,
-  `github` varchar(100) NOT NULL
+  `github` varchar(100) NOT NULL,
+  `skype` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `informations`
 --
 
-INSERT INTO `informations` (`id`, `name`, `about`, `home`, `address1`, `address2`, `mobile`, `email`, `website`, `facebook`, `twitter`, `gplus`, `linkedin`, `instagram`, `github`) VALUES
-(1, 'Lakpa Sherpa', '', 'I\'m a Web<span> Developer</span> and <span>Programmer</span> living in Kathmandun Nepal. Innovation is my passion.  I make awesome and effective web applications, usually with Laravel. Let\'s <a class=\"smoothscroll\" href=\"#about\">start scrolling</a>\r\n            and learn more <a class=\"smoothscroll\" href=\"#about\">about me</a>.', 'Milan Chowk Galli 02', 'Budhanilkantha, Kathmandu, Nepal ', '(+977)9849-446627', 'sherpalakpa18@gmail.com', 'www.slakpa.com.np', 'www.facebook.com/Cerpa.lakpa18', 'www.twitter.com/Sherpa18Lakpa', 'www.plus.google.com/106263177897716721032', 'www.linkedin.com/in/lakpa-sherpa-baa45012a/', 'www.instagram.com/lakpa_sherpa18/', 'www.github.com/sherpalakpa18');
+INSERT INTO `informations` (`id`, `name`, `about`, `home`, `address1`, `address2`, `mobile`, `email`, `website`, `facebook`, `twitter`, `gplus`, `linkedin`, `instagram`, `github`, `skype`) VALUES
+(1, 'Lakpa Sherpa', 'I am passionate about building excellent software that improves the lives of those around me. Iâ€™ve always sought out opportunities and challenges that are meaningful to me. I specialize in creating software for clients ranging from individuals and small-businesses all the way to large enterprise corporations. All of my work is produced locally from Kathmandu, Nepal. What would you do if you had a software expert available at your fingertips?', 'I\'m <span>Software Engineer</span> living in Kathmandu Nepal. Innovation is my passion.  I make awesome and effective applications, usually with php and python. Let\'s <a class=\"smoothscroll\" href=\"#about\">start scrolling</a> and learn more <a class=\"smoothscroll\" href=\"#about\">about me</a>.', 'Milan Chowk Galli 02', 'Budhanilkantha, Kathmandu, Nepal ', '(+977)9849-446627', 'sherpalakpa18@gmail.com', 'www.slakpa.com.np', 'www.facebook.com/slakpa.com.np', 'www.twitter.com/slakpa_com_np', 'www.plus.google.com/106263177897716721032', 'www.linkedin.com/in/slakpa-com-np', 'www.instagram.com/slakpa.com.np', 'www.github.com/sherpalakpa18', 'join.skype.com/invite/gvgjDDWxRGVd');
 
 -- --------------------------------------------------------
 
@@ -105,17 +106,16 @@ CREATE TABLE `messages` (
   `name` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
   `subject` varchar(150) NOT NULL,
-  `message` text NOT NULL
+  `message` text NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `messages`
 --
 
-INSERT INTO `messages` (`id`, `name`, `email`, `subject`, `message`) VALUES
-(1, 'Ratey Kaile', 'ratey_kaila@yahoo.com', 'This is jsut a prank.', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit. '),
-(2, 'Anyone', 'anyone@gmail.com', 'Nothing just testing you bitch!', 'Your work is going to fill a large part of your life, and the only way to be truly satisfied is to do what you believe is great work. And the only way to do great work is to love what you do. If you haven\'t found it yet, keep looking. Don\'t settle. As with all matters of the heart, you\'ll know when you find it. '),
-(3, 'Mr Adobe', 'hostmanage@abobe.com', 'Testomonial', 'This is Photoshop\'s version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. ');
+INSERT INTO `messages` (`id`, `name`, `email`, `subject`, `message`, `created_at`) VALUES
+(15, 'Lakpa Sherpa', 'sherpalakpa18@gmail.com', 'Helo', 'Hello again. hahahahhaha\r\ni am so tired.', '2020-02-09 10:25:24');
 
 -- --------------------------------------------------------
 
@@ -130,22 +130,22 @@ CREATE TABLE `portfolios` (
   `info` text NOT NULL,
   `techno` varchar(100) NOT NULL,
   `image` varchar(150) NOT NULL,
-  `mimage` varchar(200) NOT NULL
+  `mimage` varchar(200) NOT NULL,
+  `link` varchar(200) NOT NULL DEFAULT '#'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `portfolios`
 --
 
-INSERT INTO `portfolios` (`id`, `name`, `category`, `info`, `techno`, `image`, `mimage`) VALUES
-(1, 'Coffee Cup', 'Illustration', 'Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.', 'Branding, Webdesign', 'images/portfolio/coffee.jpg', 'images/portfolio/modals/m-coffee.jpg'),
-(2, 'Console', 'Web Developement', 'Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.', 'Branding, Web Development', 'images/portfolio/console.jpg', 'images/portfolio/modals/m-console.jpg'),
-(3, 'Judah', 'Web Design', 'Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.', 'Branding', 'images/portfolio/judah.jpg', 'images/portfolio/modals/m-judah.jpg'),
-(4, 'Into the Light', 'Photography', 'Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.', 'Photography', 'images/portfolio/into-the-light.jpg', 'images/portfolio/modals/m-intothelight.jpg'),
-(5, 'Farmer Boy', 'Branding', 'Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.', 'Branding, Webdesign', 'images/portfolio/farmerboy.jpg', 'images/portfolio/modals/m-farmerboy.jpg'),
-(6, 'Girl', 'Photography', 'Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.', 'Photography', 'images/portfolio/girl.jpg', 'images/portfolio/modals/m-girl.jpg'),
-(7, 'Origami', 'Illustration', 'Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.', 'Branding, Illustration', 'images/portfolio/origami.jpg', 'images/portfolio/modals/m-origami.jpg'),
-(8, 'Retrocam', 'Web developement', 'Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.', 'Webdesign, Photography', 'images/portfolio/retrocam.jpg', 'images/portfolio/modals/m-retrocam.jpg');
+INSERT INTO `portfolios` (`id`, `name`, `category`, `info`, `techno`, `image`, `mimage`, `link`) VALUES
+(1, 'RECOMMENDER SYSTEM', 'Machine Learning', 'This recommendation system is written with server side language and uses data dictionary to itâ€™s input for prediction. So the application user is responsible for feeding data to engine. To remove code redundancy, it is written in OOP which can used by creating itâ€™s object when required. This simplified filtering system can be used on a site with a few thousand items and members. But as the number of items grows it will be time consuming to calculate the recommendations every time someone purchases or browses an item. It assumes that developer has feed input according to user â€“ item format.\r\n\r\nCheck out itâ€™s Repo > https://github.com/sherpalakpa18/basicRE', 'PHP, ML, Recommder System ', 'images/portfolio/re1.jpg', 'images/portfolio/re1.jpg', '#'),
+(2, 'PORTFOLIO MANAGEMENT SYSTEM', 'Web', 'Portfolio Management System is personal/agency portfolio management system or template built over PHP. It is built using Object oriented paradigm so itâ€™s core function and classes can be used on another projects too. I built initially to host on my website but it resides on my portfolio.\r\nIt has used design created by ceeve. Special thanks to ceeve.com for making project successful.Click here to check out repository of this project.  ->  Repo  <-', 'HTML, CSS, Bootstrap, Javascript, Jquery, PHP, MySQL, OOP, CMS  ', 'images/portfolio/portfolio1.jpg', 'images/portfolio/portfolio1.jpg', '#'),
+(3, 'HOW? BLOG', 'Web', 'I built this blog while I was in Third year. This is web application(Laravel) that enables users to write or view posts on particular errors i.e how to solve error.', 'HTML, CSS, Bootstrap, Javascript, Jquery, PHP, Laravel, MySQL, OOP, CMS  ', 'images/portfolio/how1.jpg', 'images/portfolio/how1.jpg', '#'),
+(4, 'LIBRARY MANAGEMENT SYSTEM', 'Web', 'The project facilitates to bookmark books and even publish or download student mark-sheets.', 'HTML, CSS, Bootstrap, Javascript, Jquery, PHP, MySQL, OOP, CMS  ', 'images/portfolio/lms1.jpg', 'images/portfolio/lms1.jpg', '#'),
+(5, 'Nepal Stock Scrapper', 'PHP', 'A data API that serves market information and stock prices from Nepal Stock Exchange\'s website as JSON. The data is obtained by scraping web pages. It scrapes the website on every request. Since this is scraped data, it will break with changes to NEPSE\'s website design.', 'PHP, CSS selector, Web scrapper  ', 'images/portfolio/scrapper.png', 'images/portfolio/scrapper.png', '#'),
+(6, 'TJUNGS TRACSEC', 'Web', 'The project done was about an online management portal. I was hires as back end coder to develop pages that focus on codify tracking device CMS system flow.', 'HTML, CSS, Bootstrap, Javascript, Jquery, PHP, MySQL, OOP, CMS  ', 'images/portfolio/tjungs1.jpg', 'images/portfolio/tjungs1.jpg', '#'),
+(7, 'TRAVEL BLOG', 'Web', 'This is travel personal blog designed for pemba sherpa.', 'HTML, CSS, Bootstrap, Javascript, Jquery, PHP, MySQL, OOP, CMS  ', 'images/portfolio/travel1.jpg', 'images/portfolio/travel1.jpg', '#');
 
 -- --------------------------------------------------------
 
@@ -164,11 +164,18 @@ CREATE TABLE `skills` (
 --
 
 INSERT INTO `skills` (`id`, `name`, `percentage`) VALUES
-(1, 'HTML', 80),
-(2, 'CSS', 50),
-(3, 'JQuery', 40),
-(5, 'Laravel', 50),
-(6, 'Python', 50);
+(1, 'HTML', 85),
+(2, 'CSS', 65),
+(3, 'Javascript', 75),
+(5, 'React', 60),
+(6, 'PHP', 85),
+(7, 'Laravel', 70),
+(8, 'MySQL', 70),
+(9, 'Redshift', 65),
+(10, 'Redis', 60),
+(11, 'RabbitMQ', 60),
+(12, 'Python', 75),
+(13, 'flask', 60);
 
 -- --------------------------------------------------------
 
@@ -187,7 +194,7 @@ CREATE TABLE `testimonials` (
 --
 
 INSERT INTO `testimonials` (`id`, `qouter`, `quote`) VALUES
-(1, 'Mr. Adobe', 'This is Photoshop\'s version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. '),
+(1, 'Sandesh Jonchhe', 'When it comes to dedication, this guy has dedication like no on else. I had an absolute ball of a time while working with him in the college project. Looking forward to work on many more projects in the future. '),
 (2, 'Steve Jobs', 'Your work is going to fill a large part of your life, and the only way to be truly satisfied is to do what you believe is great work. And the only way to do great work is to love what you do. If you haven\'t found it yet, keep looking. Don\'t settle. As with all matters of the heart, you\'ll know when you find it. ');
 
 -- --------------------------------------------------------
@@ -237,7 +244,7 @@ CREATE TABLE `works` (
   `company` varchar(100) NOT NULL,
   `post` varchar(50) NOT NULL,
   `date` varchar(100) NOT NULL,
-  `info` varchar(500) NOT NULL
+  `info` varchar(10000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -245,9 +252,9 @@ CREATE TABLE `works` (
 --
 
 INSERT INTO `works` (`id`, `company`, `post`, `date`, `info`) VALUES
-(1, 'Awesome Design Studio', 'Senior UX Designer', 'March 2010 - Present', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. Nullam dictum felis eu pede mollis pretium. '),
-(2, 'Super Cool Studio', 'UX Designer', ' March 2007 - February 2010', ' This is Photoshop\'s version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris vitae erat\n'),
-(4, 'abc', 'xyz', '2017/09/09', 'It is good company');
+(1, 'Tjungs Tech. ltd.', 'Web Developer', 'Sep - Nov 2016', 'Worked as PHP developer and developed Tracsec Interface.\r\n<ul class=\"work-list\">\r\n<li>Developed platform for admin to manage tracking devices and provides devices to customers.</li>\r\n<li>Developed platform for Customer to manages tracking devices, check locations in Map and view device reports.</li>\r\n</ul>\r\n<ul class=\"tech\">\r\n<li>HTML</li>\r\n<li>CSS</li>\r\n<li>Bootstrap</li>\r\n<li>Javascript</li>\r\n<li>JQuery</li>\r\n<li>PHP</li>\r\n<li>MySQL</li>\r\n<li>Google Map</li>\r\n</ul>'),
+(2, 'GrowByData Services', 'Intern Developer', 'Sep - Dec 2018', 'Worked as Laravel Developer and gave support to Competitor Price Intelligence application(CPI).\r\n<ul class=\"work-list\">\r\n<li>Developed Internal Report Dashboard.</li>\r\n<li>Develop flask API based Mail alert system for CPI completion alert</li>\r\n<li>Enhance CPI settings.</li>\r\n<li>Enhance Search Engine Result Page(SERP) keyword and rating reports. </li>\r\n<li>Magento Export Utility Bug fixes and support.</li>\r\n</ul>\r\n<ul class=\"tech\">\r\n<li>HTML</li>\r\n<li>CSS</li>\r\n<li>Bootstrap</li>\r\n<li>Javascript</li>\r\n<li>JQuery</li>\r\n<li>C3js</li>\r\n<li>PHP</li>\r\n<li>Laravel</li>\r\n<li>MySQL</li>\r\n<li>Redshift</li>\r\n<li>Python</li>\r\n<li>Flask</li>\r\n</ul>'),
+(3, 'GrowByData Services', 'Software Engineer', '2018 - Present', 'Working as Associate Software Engineer and provide support to Competitor Price Intelligence application(CPI).\r\n<ul class=\"work-list\">\r\n<li>Enhance CPI reports using in-house report library aka v2reports.</li>\r\n<li>Develop Report Caching system.</li>\r\n<li>Develop Auto Trigger Report Cache system.</li>\r\n<li>Enhance Magento Export Utility and support.</li>\r\n<li>Support on various module of CPI application.</li>\r\n</ul>\r\n<ul class=\"tech\">\r\n<li>HTML</li>\r\n<li>CSS</li>\r\n<li>Bootstrap</li>\r\n<li>Javascript</li>\r\n<li>JQuery</li>\r\n<li>PHP</li>\r\n<li>Laravel</li>\r\n<li>MySQL</li>\r\n<li>Redshift</li>\r\n<li>Python</li>\r\n<li>Flask</li>\r\n<li>Redis</li>\r\n<li>RabbitMQ</li>\r\n</ul>');
 
 --
 -- Indexes for dumped tables
@@ -322,51 +329,62 @@ ALTER TABLE `works`
 --
 ALTER TABLE `educations`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `informations`
 --
 ALTER TABLE `informations`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
 --
 -- AUTO_INCREMENT for table `portfolios`
 --
 ALTER TABLE `portfolios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
 --
 -- AUTO_INCREMENT for table `skills`
 --
 ALTER TABLE `skills`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
 --
 -- AUTO_INCREMENT for table `testimonials`
 --
 ALTER TABLE `testimonials`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
 --
 -- AUTO_INCREMENT for table `users_session`
 --
 ALTER TABLE `users_session`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `works`
 --
 ALTER TABLE `works`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

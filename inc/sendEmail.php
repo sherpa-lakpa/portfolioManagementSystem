@@ -46,6 +46,7 @@ if($_POST) {
 
 
    if (!$error) {
+   		include '../admin/classes/GMail.php';
    		include '../admin/classes/DB.php';
    		include '../admin/classes/Modal.php';
    		include '../admin/classes/Message.php';
@@ -63,6 +64,8 @@ if($_POST) {
 					'subject' => $subject,
 					'message' => $contact_message,
 				));
+
+   			GMail::send($name, $email, $subject, $contact_message);
    			
    		}catch(Exception $e){
 				die($e->getMessage());

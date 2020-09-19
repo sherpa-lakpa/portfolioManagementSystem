@@ -13,12 +13,12 @@
                <li><a href="https://<?php echo $informations->linkedin; ?>"><i class="fa fa-linkedin"></i></a></li>
                <li><a href="https://<?php echo $informations->instagram; ?>"><i class="fa fa-instagram"></i></a></li>
                <li><a href="https://<?php echo $informations->github; ?>"><i class="fa fa-github"></i></a></li>
-               <li><a href="#"><i class="fa fa-skype"></i></a></li>
+               <li><a href="https://<?php echo $informations->skype; ?>" target="_blank"><i class="fa fa-skype"></i></a></li>
             </ul>
 
             <ul class="copyright">
-               <li>&copy; Copyright 2017 slakpa.com.np</li>
-               <li>Design by <a href="http://slakpa.com.np" title="slakpa.com.np" target="_blank">Lakpa Sherpa</a></li>   
+               <li>&copy; Copyright 2020 slakpa.com.np</li>
+               <li>Design by <a href="https://slakpa.com.np" title="slakpa.com.np" target="_blank">Lakpa Sherpa</a></li>   
               <!--  <li>Thanks to <a href="http://www.styleshout.com/" title="Styleshout" target="_blank">Styleshout</a></li>  --> 
             </ul>
 

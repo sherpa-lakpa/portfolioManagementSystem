@@ -33,6 +33,11 @@ class homeController{
 		$testimonials = $this->testimonial->index()->data();
 		return $testimonials;
 	}
+	public function messages(){
+		$this->message_list = new Message;
+		$message_list = $this->message_list->index()->data();
+		return $message_list;
+	}
 	public function tdelete(){
 		if($id = Input::get('tdelete')){
 			$this->testimonial->delete($id);
@@ -194,6 +199,11 @@ class homeController{
 					'require' => true,
 					'min' => 10,
 					'max' => 100
+				),
+				'skype' => array(
+					'require' => true,
+					'min' => 10,
+					'max' => 100
 				)
 			));
 			if($validation->passed()){
@@ -204,7 +214,8 @@ class homeController{
 						'gplus' => Input::get('gplus'),
 						'linkedin' => Input::get('linkedin'),
 						'instagram' => Input::get('instagram'),
-						'github' => Input::get('github')
+						'github' => Input::get('github'),
+						'skype' => Input::get('skype')
 						));
 					Session::flash('index', 'Your social links have been updated.');
 					Redirect::to('index.php');

@@ -7,6 +7,7 @@ $home = new homeController;
 $informations = $home->index();
 
 $messages = $home->msgCount();
+$message_list = $home->messages();
 
 $skills = $home->skillCount();
 
